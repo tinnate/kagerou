@@ -1,7 +1,8 @@
 'use strict'
 
-const VERSION = '0.7.22'
-const CODENAME = 'Never-Lost Word'
+const VERSION = '0.7.23'
+const CODENAME = 'Additional Memory'
+const DESCRIPTION = '\'友達なんかに、なりたくなかった\''
 
 const CONFIG_DEFAULT = {
   lang: 'ko',
@@ -9,7 +10,7 @@ const CONFIG_DEFAULT = {
     // body
     'resize-factor': 1,
     'body-margin': '0.25rem',
-    'body-font': "'Roboto', 'Source Han Sans', 'Meiryo UI', '맑은 고딕', sans-serif",
+    'body-font': "'Lato', 'Source Han Sans', 'Meiryo UI', '맑은 고딕', sans-serif",
     // header / ui
     'nav-opacity': 1,
     'nav-bg': 'rgba(31, 31, 31, 0.9)',
@@ -180,8 +181,7 @@ const CONFIG_DEFAULT = {
   footer: {
     rank: true,
     rdps: true,
-    rhps: false,
-    recover: false
+    rhps: false
   },
   custom_css: `
 /* 여기에 사용자 스타일시트를 작성합니다.
