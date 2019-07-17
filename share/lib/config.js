@@ -1,8 +1,8 @@
 'use strict'
 
-const VERSION = '0.7.25'
-const CODENAME = 'Remind Blue'
-const DESCRIPTION = '\'君の歌った「大人が嫌いな歌」を\''
+const VERSION = '0.7.26'
+const CODENAME = 'Lost-day Hours'
+const DESCRIPTION = '\'今日も夕ご飯のことを考える\''
 
 const CONFIG_DEFAULT = {
   lang: 'ko',
@@ -237,6 +237,13 @@ const COLUMN_USE_LARGER = {
   'MAXHIT': ['MAXHIT', 'maxhit'],
   'MAXHEAL': ['MAXHEAL', 'maxheal']
 }
+
+const VALID_PLAYER_JOBS = [
+  'GLA', 'GLD', 'MRD', 'PUG', 'PGL', 'LNC', 'ROG', 'ARC', 'THM', 'ACN', 'CNJ',
+  'PLD', 'WAR', 'MNK', 'DRG', 'NIN', 'BRD', 'BLM', 'SMN', 'SCH', 'WHM', 'DRK',
+  'MCH', 'AST', 'SAM', 'RDM', 'BLU', 'GNB', 'DNC',
+  'CRP', 'BSM', 'ARM', 'GSM', 'LTW', 'WVR', 'ALC', 'CUL', 'MIN', 'BTN', 'FSH'
+]
 
 const PET_MAPPING = {
   '카벙클 에메랄드': 'acn-pet',
