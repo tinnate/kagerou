@@ -124,7 +124,8 @@
         "config-to-export": "Configuration à exporter",
         "all": "Tout",
         "data-fault": "Les  données sont incorrectes ou corrompues.",
-        "content-count": "Nombre de colonnes"
+        "content-count": "Nombre de colonnes",
+        "open-prompt": "Ouvrir une dialogue"
       },
       "etc": {
         "_": "Plus",
@@ -248,6 +249,7 @@
       "direct": ["DH", "Directe %"],
       "crit_direct": ["!!!", "Critique Hit% (!!!)"],
       "crittypes": ["D/!/!!!", "Direct/Critical/!!! Count"],
+      "critpcts": ["Crits%", "Direct/Critical/!!! %"],
       "max": ["Max", "Maxhit (w/o skillname)"],
       "maxskill": ["Max", "Maxhit (Nom de compétence seulement)"],
       "maxhit": ["Maxhit", "Maxhit"],

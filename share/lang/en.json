@@ -124,7 +124,8 @@
         "config-to-export": "Config to export",
         "all": "All",
         "data-fault": "Data is incorrect or broken.",
-        "content-count": "Column count"
+        "content-count": "Column count",
+        "open-prompt": "Use prompt()"
       },
       "etc": {
         "_": "More",
@@ -248,6 +249,7 @@
       "direct": ["DH", "Direct Hit%"],
       "crit_direct": ["!!!", "Critical Direct Hit% (!!!)"],
       "crittypes": ["D/!/!!!", "Direct/Critical/!!! Count"],
+      "critpcts": ["Crits%", "Direct/Critical/!!! %"],
       "max": ["Max", "Maxhit (w/o skillname)"],
       "maxskill": ["Max", "Maxhit (skillname only)"],
       "maxhit": ["Maxhit", "Maxhit"],

@@ -1,8 +1,8 @@
 'use strict'
 
-const VERSION = '0.8.2'
-const CODENAME = 'point zero'
-const DESCRIPTION = '「ゼロからスタートする」'
+const VERSION = '0.8.5'
+const CODENAME = 'phantasmagoria'
+const DESCRIPTION = '長き道夫振り返り　小さな光へ歩き出す'
 
 const CONFIG_DEFAULT = {
   lang: 'ko',
@@ -104,6 +104,7 @@ const CONFIG_DEFAULT = {
     '_deal-direct': 2.5,
     '_deal-crit_direct': 2.5,
     '_deal-crittypes': 4,
+    '_deal-critpcts': 6,
     '_deal-max': 2.5,
     '_deal-maxhit': 7,
     '_deal-maxskill': 5,
@@ -177,8 +178,7 @@ const CONFIG_DEFAULT = {
     jobless: true
   },
   element: {
-    'resize-handle': true,
-    'narrow-nav': false,
+    'narrow-nav': true,
     'hide-footer': false,
     'use-header-instead': false
   },
@@ -415,6 +415,19 @@ const COLUMN_INDEX = {
     crittypes: {
       v: _ => [_.DirectHitCount || '-', _.crithits || '-', _.CritDirectHitCount || '-'],
       f: _ => _.join('/')
+    },
+    critpcts: {
+      v: _ => [_.DirectHitCount || 0, _.crithits || 0, _.CritDirectHitCount || 0, _.swings || 1],
+      f: (_, conf) => {
+        const swings = parseInt(_.pop()) || 1
+        _ = _.map(_ => (parseInt(_) / swings * 100).toFixed(0))
+
+        if(conf.format.use_tailing_pct) {
+          return _.map(_ => _ + '<small>%</small> ').join('')
+        } else {
+          return _.join('/')
+        }
+      }
     },
     max: {
       v: 'MAXHIT',
