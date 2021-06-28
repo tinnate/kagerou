@@ -1,8 +1,8 @@
 'use strict'
 
-const VERSION = '0.8.5'
-const CODENAME = 'phantasmagoria'
-const DESCRIPTION = '長き道夫振り返り　小さな光へ歩き出す'
+const VERSION = '0.8.9'
+const CODENAME = 'Northern Cross'
+const DESCRIPTION = '燦然とピアノを照らす もうひとつの十字星'
 
 const CONFIG_DEFAULT = {
   lang: 'ko',
@@ -161,6 +161,7 @@ const CONFIG_DEFAULT = {
   format: {
     significant_digit: {
       dps: 0,
+      damage: 0,
       hps: 0,
       accuracy: 0,
       critical: 0
@@ -170,7 +171,8 @@ const CONFIG_DEFAULT = {
     use_short_name: 0,
     use_skill_aliases: true,
     use_tailing_pct: true,
-    small_lower_numbers: false
+    small_lower_numbers: false,
+    number_abbreviation: false
   },
   filter: {
     unusual_spaces: false,
@@ -366,7 +368,10 @@ const COLUMN_INDEX = {
         if(isNaN(_)) {
           return '---'
         }
-        return formatDps(_, +conf.format.significant_digit.dps)
+        return formatDps(_,
+          +conf.format.significant_digit.dps,
+          conf.format.number_abbreviation
+        )
       }
     },
     pct: {
@@ -377,7 +382,16 @@ const COLUMN_INDEX = {
         else return _ + (conf.format.use_tailing_pct? '<small>%</small>' : '')
       }
     },
-    total: 'damage',
+    total: {
+      v: 'damage',
+      f: (_, conf) => formatDps(
+        _,
+        conf.format.significant_digit.damage,
+        conf.format.number_abbreviation,
+        '',
+        true
+      )
+    },
     failure: {
       v: _ => _.swings > 0? _.misses / _.swings * 100 : -1,
       f: (_, conf) =>
@@ -437,7 +451,11 @@ const COLUMN_INDEX = {
       v: 'maxhit',
       f: (_, conf) => {
         let map = l.skillname(_, conf.format.use_skill_aliases)
-        return `${formatDps(map[1], 0)} <small>${map[0]}</small>`
+        return `${formatDps(
+          map[1],
+          conf.format.significant_digit.damage,
+          conf.format.number_abbreviation
+        )} <small>${map[0]}</small>`
       }
     },
     maxskill: {
@@ -447,19 +465,25 @@ const COLUMN_INDEX = {
     last10: {
       v: 'Last10DPS',
       f: (_, conf) => {
-        return isNaN(_)? '0' : formatDps(_, conf.format.significant_digit.dps)
+        return isNaN(_)?
+          '0'
+        : formatDps(_, conf.format.significant_digit.dps, conf.format.number_abbreviation)
       }
     },
     last30: {
       v: 'Last30DPS',
       f: (_, conf) => {
-        return isNaN(_)? '0' : formatDps(_, conf.format.significant_digit.dps)
+        return isNaN(_)?
+          '0'
+        : formatDps(_, conf.format.significant_digit.dps, conf.format.number_abbreviation)
       }
     },
     last60: {
       v: 'Last60DPS',
       f: (_, conf) => {
-        return isNaN(_)? '0' : formatDps(_, conf.format.significant_digit.dps)
+        return isNaN(_)?
+          '0'
+        : formatDps(_, conf.format.significant_digit.dps, conf.format.number_abbreviation)
       }
     }/*,
     last180: {
@@ -470,11 +494,23 @@ const COLUMN_INDEX = {
   tank: {
     damage: {
       v: 'damagetaken',
-      f: _ => '-' + _
+      f: (_, conf) => '-' + formatDps(
+        _,
+        conf.format.significant_digit.damage,
+        conf.format.number_abbreviation,
+        '',
+        true
+      )
     },
     heal: {
       v: 'healstaken',
-      f: _ => '+' + _
+      f: (_, conf) => '+' + formatDps(
+        _,
+        conf.format.significant_digit.damage,
+        conf.format.number_abbreviation,
+        '',
+        true
+      )
     },
     parry: 'ParryPct',
     block: 'BlockPct',
@@ -486,7 +522,13 @@ const COLUMN_INDEX = {
       v: 'enchps',
       f: (_, conf) => {
         _ = pFloat(_)
-        return isNaN(_)? '0' : formatDps(_, conf.format.significant_digit.hps)
+        return isNaN(_)?
+          '0'
+        : formatDps(
+          _,
+          conf.format.significant_digit.hps,
+          conf.format.number_abbreviation
+        )
       }
     },
     pct: {
@@ -497,7 +539,16 @@ const COLUMN_INDEX = {
         else return _ + '<small>%</small>'
       }
     },
-    total: 'healed',
+    total: {
+      v: 'healed',
+      f: (_, conf) => formatDps(
+        _,
+        conf.format.significant_digit.damage,
+        conf.format.number_abbreviation,
+        '',
+        true
+      )
+    },
     over: {
       v: _ => _['OverHealPct'],
       f: _ => _ && _.replace? _.replace('%', '<small>%</small>') : '---'

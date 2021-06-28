@@ -286,11 +286,11 @@ document.addEventListener('DOMContentLoaded', _ => {
                    data-config-key="format.use_tailing_pct" />
           </p>
           <p class="control">
-            <label for="input-format-small-lower-numbers"
+            <label for="input-format-small_lower_numbers"
                    data-locale="config.format.small_lower_numbers">
               DPS 값의 1000 미만을 작게 표시
             </label>
-            <input type="checkbox" id="input-format-small-lower-numbers"
+            <input type="checkbox" id="input-format-small_lower_numbers"
                    data-type="boolean"
                    data-config-key="format.small_lower_numbers" />
           </p>
@@ -308,6 +308,15 @@ document.addEventListener('DOMContentLoaded', _ => {
           <h3 data-locale="config.format.significant_digit._">
             소수점 정확도
           </h3>
+          <p class="control">
+            <label for="input-format-number_abbreviation"
+                   data-locale="config.format.number_abbreviation">
+              천 단위 생략 사용
+            </label>
+            <input type="checkbox" id="input-format-number_abbreviation"
+                   data-type="boolean"
+                   data-config-key="format.number_abbreviation" />
+          </p>
           <p class="control">
             <label for="input-format-significant_digit-dps"
                    data-locale="config.format.significant_digit.dps">
@@ -335,6 +344,21 @@ document.addEventListener('DOMContentLoaded', _ => {
               </label>
               <input type="range" id="input-format-significant_digit-hps"
                      data-config-key="format.significant_digit.hps"
+                     min="0" step="1" max="2" />
+            </span>
+          </p>
+          <p class="control">
+            <label for="input-format-significant_digit-damage"
+                   data-locale="config.format.significant_digit.damage">
+              대미지 값
+            </label>
+            <span class="input-group">
+              <label class="input-value"
+                     for="input-format-significant_digit-damage">
+                2
+              </label>
+              <input type="range" id="input-format-significant_digit-damage"
+                     data-config-key="format.significant_digit.damage"
                      min="0" step="1" max="2" />
             </span>
           </p>
